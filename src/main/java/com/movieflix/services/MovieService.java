@@ -32,6 +32,7 @@ public class MovieService {
     @Autowired
     private MovieRepository movieRepository;
 
+    @Transactional(readOnly = true)
     public MovieDTO getMovie(Long movieId) {
 
         Movie movie = movieRepository.findById(movieId)
@@ -39,6 +40,7 @@ public class MovieService {
         return new MovieDTO(movie);
     }
 
+    @Transactional(readOnly = true)
     public Page<MovieDTO> getMoviesPageOrderlyTitle(Long genreId) {
 
         Pageable sortedByTitle =

@@ -8,6 +8,7 @@ import com.movieflix.repositories.GenreRepository;
 import com.movieflix.repositories.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,6 +19,7 @@ public class GenreService {
     @Autowired
     private GenreRepository genreRepository;
 
+    @Transactional(readOnly = true)
     public List<GenreDTO> getGenres() {
 
         List<Genre> genre = genreRepository.findAll();
