@@ -1,8 +1,12 @@
 package com.movieflix.dto;
 
+import com.movieflix.entities.Role;
 import com.movieflix.entities.User;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class UserDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -10,7 +14,9 @@ public class UserDTO implements Serializable {
 	private Long id;
 	private String name;
 	private String email;
-	
+
+	private List<String> roles = new ArrayList<>();
+
 	public UserDTO() {
 	}
 
@@ -24,6 +30,7 @@ public class UserDTO implements Serializable {
 		id = entity.getId();
 		name = entity.getName();
 		email = entity.getEmail();
+		roles = entity.getRoles().stream().map(Role::getAuthority).collect(Collectors.toList());
 	}
 
 	public Long getId() {
@@ -48,5 +55,15 @@ public class UserDTO implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public List<String> getRoles() {
+		return roles;
+	}
+
+	public boolean hasHole(String roleName) {
+
+		return roles.stream()
+				.anyMatch(r -> r.equals(roleName));
 	}
 }
