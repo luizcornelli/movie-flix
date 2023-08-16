@@ -1,5 +1,6 @@
 package com.movieflix.entities;
 
+import com.movieflix.infra.adapters.domain.UserEntity;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +9,7 @@ public class UserTests {
 	@Test
 	public void userShouldHaveCorrectStructure() {
 	
-		User entity = new User();
+		UserEntity entity = new UserEntity();
 		entity.setId(1L);
 		entity.setName("Name");
 		entity.setEmail("email@gmail.com");
